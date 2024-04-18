@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import DB from "./db";
 
 const connectToDB = new DB();
+const user = "testUser";
 const pwd = "Test123";
 
 async function establishDBConnection() {
@@ -17,7 +18,7 @@ async function establishDBConnection() {
     //Establish DB connection
     await establishDBConnection();
     await dataBase.executeQuery(`INSERT INTO public."User" (username, password) VALUES ('testUser', '${pwd}');`)
-    await loginPage.loginWith("testUser", "Test123")
+    await loginPage.loginWith(user, pwd)
     //Execute Query to tables
     //Join id from table1.id and table2.id.
     //Include only records >=40 from table2.age.
